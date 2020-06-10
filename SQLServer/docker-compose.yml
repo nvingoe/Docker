@@ -1,0 +1,21 @@
+version: "3.8"
+services: 
+    sql_server_db:
+        container_name: "sql_server_db_1432"
+        image: "mcr.microsoft.com/mssql/server:2019-latest"
+        volumes: 
+            - sqldatavolume:/var/opt/mssql
+            - sqlbackupvolume:/var/opt/mssql/backup
+            
+        ports: 
+            - "1432:1432"
+        environment:
+            ACCEPT_EULA: "Y" 
+            MSSQL_PID: "Developer" 
+            MSSQL_COLLATION: "Latin1_General_CS_AS"
+            MSSQL_SA_PASSWORD: "SA_PASSWORD=Password_01"
+            MSSQL_TCP_PORT: "1432"
+volumes:
+    sqldatavolume: 
+    sqlbackupvolume:
+
